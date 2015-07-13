@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
 /**
  * Created by perso on 16/06/15.
@@ -16,6 +18,22 @@ public class RegisterActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+    }
+
+
+    public void onClickRegister(View view) {
+
+        EditText editTextEmail = (EditText) findViewById(R.id.act_register_email);
+        final String email = editTextEmail.getText().toString();
+
+        EditText editTextPassword = (EditText) findViewById(R.id.act_register_password);
+        final String password = editTextPassword.getText().toString();
+
+        if (email.isEmpty() || password.isEmpty()) {
+
+            Toast toast = Toast.makeText(this, R.string.empty_form, Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 
     @Override
