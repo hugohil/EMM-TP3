@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">TP3</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="register_btn_text">Créer un compte</string>
+    <string name="login_btn_text">J\'ai déjà un compte</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="form_email">Adresse email</string>
+    <string name="form_register">Register</string>
+    <string name="form_password">Password</string>
+</resources>
