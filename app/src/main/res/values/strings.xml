@@ -9,4 +9,5 @@
     <string name="form_email">Adresse email</string>
     <string name="form_register">Register</string>
     <string name="form_password">Password</string>
+    <string name="title_activity_register">Register</string>
 </resources>
