@@ -15,4 +15,6 @@
     <string name="act_welcome_prefixe">Bienvenue</string>
     <string name="welcome_menu_disconnect">Déconnexion</string>
     <string name="bad_form">L\'email ou le mot de passe sont incorrects</string>
+    <string name="error_user_exist">L\'utilisateur existe déjà</string>
+    <string name="error_server_off">Le serveur est innaccessible</string>
 </resources>

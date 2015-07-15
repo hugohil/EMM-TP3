@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -92,8 +93,21 @@ public class LoginActivity extends ActionBarActivity {
                         new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                Toast toast = Toast.makeText(getBaseContext(), R.string.bad_form, Toast.LENGTH_LONG);
-                                toast.show();
+                                String json;
+                                NetworkResponse response = error.networkResponse;
+                                if (response.statusCode == 422) {
+                                    Toast toast = Toast.makeText(getApplicationContext(), R.string.error_user_exist, Toast.LENGTH_LONG);
+                                    toast.show();
+                                } else if (response.statusCode == 400) {
+                                    Toast toast = Toast.makeText(getApplicationContext(), R.string.error_server_off, Toast.LENGTH_LONG);
+                                    toast.show();
+                                } else {
+                                    json = new String(response.data);
+                                    if (json != null) {
+                                        Toast toast = Toast.makeText(getApplicationContext(), json, Toast.LENGTH_LONG);
+                                        toast.show();
+                                    }
+                                }
                             }
                         });
                 requestQueue.add(jsonObjReq);
