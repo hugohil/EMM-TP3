@@ -7,35 +7,30 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
+import android.widget.TextView;
 
 
-public class MainActivity extends ActionBarActivity {
+public class WelcomeActivity extends ActionBarActivity {
     private SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_welcome);
 
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        String currentUser = preferences.getString("ACTIVE_USER", null);
+        String user_email = preferences.getString("ACTIVE_USER", "");
 
-        if ( currentUser != null ) {
-
-            Intent intent = new Intent(this, WelcomeActivity.class);
-            startActivity(intent);
-            finish();
-        }
-        else {
-            setContentView(R.layout.activity_main);
-        }
+        TextView field = (TextView) findViewById(R.id.act_welcome_text);
+        String welcome = getResources().getString(R.string.act_welcome_prefixe);
+        field.setText(welcome + " " + user_email);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_welcome, menu);
         return true;
     }
 
@@ -50,18 +45,16 @@ public class MainActivity extends ActionBarActivity {
         if (id == R.id.action_settings) {
             return true;
         }
+        if (id == R.id.welcome_menu_action_disconnect) {
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.remove("ACTIVE_USER");
+            editor.apply();
+
+            Intent mainIntent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(mainIntent);
+            finish();
+        }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void register(View view) {
-        Intent intent = new Intent(this, RegisterActivity.class);
-        startActivity(intent);
-    }
-
-    public void login(View view) {
-        // Intent intent = new Intent(this, LoginActivity.class);
-        // finish();
-        // startActivity(intent);
     }
 }
