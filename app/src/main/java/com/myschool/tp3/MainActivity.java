@@ -60,8 +60,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void login(View view) {
-        // Intent intent = new Intent(this, LoginActivity.class);
-        // finish();
-        // startActivity(intent);
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
 }
